@@ -1,35 +1,41 @@
 Banana
 ======
 
-Algoritmo de Wilson
+Um pouco de teoria dos grafos
 ---------
 
-A ideia de David Bruce Wilson para um algoritmo deste tipo é resumidamente, um programa que recebe
-como entrada um grafo e escolhe um ponto não preenchido aleatório de início, então começa o *loop-erased random walk*
-terminando cada caminho uma vez que este encontra uma parte já preenchida do grafo. O processo se repete
-até obter-se um labirinto completamente preenchido.
+O que é um grafo?
 
-O mecanismo essencial do algoritmo é o *loop-erased random walk*, que é semelhante ao *random walk*, entretanto,
-caso o percurso cruze a si mesmo, o "loop" formado é apagado e o processo continua do ponto imediamente anterior 
-ao cruzamento. O caminho só é considerado preenchido uma vez que encontra outra parte previamente preenchida.
+Um grafo de teoria dos grafos, em particular, é um assunto essêncial para entender o handout de hoje. Na teoria dos grafos, um grafo é um par ordenado que consiste em um conjunto de vértices e, em seguida, em um conjunto de arestas. 
 
-**INSERIR ANIMAÇÃO DE EXEMPLO**
+$$G = \left ( v, e \right )$$
 
-As vantagens dessa estratégia é que como resultado obtem-se um labirinto perfeito, ou seja, todos os pontos são acessíveis, e 
-entre dois pontos há apenas um caminho. Outro benefício do algoritmo de Wilson é que pelo caminho ser definido aleatóriamente
-ele é imparcial entre caminhos curtos ou longos, um problema de alguns outro algoritmos de geração de labirintos como se pode ver
-nas duas figuras abaixo:
+Os grafos são frequentemente representados como diagramas, com pontos ou circulos representando vértices e linhas representando arestas. Cada aresta une dois vértices, de modo que as linhas no diagrama de um grafo vão de um vértice a outro vértice. Então, o conjunto de arestas de um grafo consiste em subconjuntos de dois elementos do conjunto de vértices, pois em um grafo simples, cada aresta é inteiramente definida pelos vértices que une. 
 
-![](DepthFirstSearchMaze.png)
-![](WilsonMaze.png)
+![](simpleGraph.png)
 
-A esquerda temos um labirinto gerado pelo algoritmo *depth-first search* que tem um viés para gerar corredores longos e a esquerda temos o algoritmo de Wilson.
+$$G = \left ( \left\{ 1, 2, 3, 4 \right\}, \left\{ \left\{ 1, 2 \right\}, \left\{ 1, 3 \right\}, \left\{ 1, 4 \right\}, \left\{ 2, 3 \right\} \right\} \right )$$
 
-Agora que tem uma ideia de como o algorimo funciona que tal ver uma animação dele em ação? este [site](https://bl.ocks.org/mbostock/11357811) contém um código 
-que toda vez que você carrega a página um novo labirinto começa a ser gerado.
+Ah, a propósito, estamos falando apenas de grafos simples, que são os tipos de grafos mais bem estudados na teoria dos grafos, e geralmente são chamados apenas de grafos. Entre outras restrições, grafos simples não permitem loops, multi-arestas ou arestas direcionadas. Para ficar mais facil a compreensão, veja o exemplo abaixo:
 
 
+??? Checkpoint:
+
+Esse exemplo demonstra como um grafo pode representar objetos e como esses objetos se relacionam
+
+Digamos que seis pessoas estão indo para uma festa logo apos uma semana cansativa de provas e projetos. Quando chegam à festa, a pessoa **A** comprimenta as pessoas **E** e **F**, **B** comprimenta **C**, e **F** comprimenta **B** e **E**. 
+
+Como ficaria a representação dessas seis pessoas na festa e com quem cada uma interagiu?
+
+::: Esquema
+: graph
+:::
+
+::: Equação Final
+$$G = \left (\left\{A, B, C, D, E, F\right\}, \left\{\left\{A, E\right\}, \left\{A, F\right\}, \left\{B, C\right\}, \left\{F, B\right\}, \left\{F, E\right\}\right\}\right )$$
+:::
+???
 
 
-
-
+Arvore de Extensão
+---------
