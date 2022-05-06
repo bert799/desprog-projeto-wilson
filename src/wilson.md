@@ -50,6 +50,8 @@ Uma Arvore de Estensão, também chamada de sub-grafo de extenção, é quase a 
 
 Ou seja, se contássemos o numero total de arestas de uma árvore de extensão, ela sempre será igual a *__n - 1__*, onde *__n__* seria o número de vértices.
 
+![](spanning_tree_gif.gif)
+
 ??? Checkpoint 2
 
 No caso do primeiro *checkpoint*, seu grafo final poderia ser considerado uma árvore de extensão?
