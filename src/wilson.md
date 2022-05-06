@@ -74,11 +74,7 @@ Complexidade do algoritmo de Wilson
 ---------
 
 Pelo fato de ser um programa probabilistico, a complexidade do algoritmo de Wilson não é algo simples de ser definida, entretanto
-podemos chegar a um numerp esperado médio que leva para o grafo ser preenchido.
+podemos chegar a um numero esperado médio que leva para o grafo ser preenchido.
 
-Imagine que temos um grafo como o abaixo com `md i` vértices.
-
-![](complexity1.drawio.png)
-
-Se mandamos este grafo para o algoritmo de Wilson, é de se esperar que na média irá realizar `md n` operações sendo elas portanto proporcionais ao número `md i` de vértices. Isso pode ser justificado já que cada vértice tem 4 caminhos possíveis a serem seguidos o que resulta em 4
+A probabilidade do programa ficar preso em um loop infinito é nula, requerindo que nunca encontre algum ponto pré definido o que é impossível já que sempre existe esta probabilidade. A probabilidade de percorrer apenas algumas vezes todos os vértices é maior, e conforme o grafo é preenchido ela só cresce. Assim é de se esperar que o tempo que leva para percorrer é diretamente proporcional ao tamanho do grafo portanto pelas regras de simplificação nos que a conclusão que a complexidade do algorítmo de Wilson é O(n).
 
