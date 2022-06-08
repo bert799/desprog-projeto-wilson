@@ -254,7 +254,7 @@ Como elaborar estes ramos? Primeiro será necessário escolher aleatóriamente u
 
 Abaixo temos um exemplo da construção de um destes ramos.
 
-INSERT ANIMATION OF TREE
+:WilsonWay
 
 ??? Checkpoint X
 
