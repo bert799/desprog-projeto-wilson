@@ -204,7 +204,7 @@ Com essa idéia vamos pensar neste método para a construção de labirintos.
 
 ??? Checkpoint 8
 
-Essa ideia parece ser boa, mas introduz um problema, qual? Lembre que queremos que o algoritmo gere labirintos de forma imparcial, ou seja, que não haja preferência para um tipo específico de labirito.
+Essa ideia parece ser boa, mas introduz um problema, qual? Lembre que queremos que o algoritmo gere labirintos de forma imparcial, ou seja, que não haja preferência para um tipo específico de labirinto.
 
 ::: Gabarito
 Ao "desviar" de pontos já percorridos tenderemos a criar caminhos muito longos o que eliminaria um das vantagens de um labirinto gerado a partir de *random-walk* que é a imparcialidade dos tipos de labirintos que são possíveis. Já que deste modo tenderia obter labirintos com corredores muito grandes.
@@ -245,7 +245,7 @@ Nas primeiras operações pode ser que o algoritmo demore para "encontrar" o lab
 
 ???
 
-??? Desafio 11
+??? Desafio
 
 A desvantagem acima pode acabar sendo relativamente benigna para a velocidade do algoritmo, porque?
 
@@ -279,7 +279,7 @@ Complexidade do algoritmo de Wilson e comparação com Aldous-Broder
 ---------
 Pelo fato de ser um programa probabilistico, a complexidade do algoritmo de Wilson não é algo simples de ser definida, então vamos colocar os números de lado no momento
 ("Ufa, engenharia já tem números o suficiente.") e compará-lo com o algoritmo que vimos anteriormente, o algoritmo de Aldous-Broder. De ínicio vamos falar de sua similaridade, ambos utilizam alguma forma de *random walk* para ir preenchendo a árvore geradora, assim, no pior dos casos ambos vão ter a complexidade igual, porém isso
-não significa que seus tempo de rodar são iguais. 
+não significa que seus tempos de rodar são iguais na prática. 
 
 ??? Checkpoint 12
 
@@ -296,6 +296,8 @@ Embora o algoritmo de Aldous-Broder seja mais rápido no começo ele sempre trab
 ??? Desafio
 
 Qual seria uma implementação possível de melhor desempenho que o algoritmo de Wilson e o algoritmo de Aldous-Broder?
+
+Obs.: A resposta é mais óbvia do que você pode pensar.
 
 ::: Gabarito
 Como os algoritmos tem desvantagens opostas em relação ao tempo das operações iniciais e finais, podemos criar um algoritmo híbrido que usa o Aldous-Broder para preencher uma árvore geradora inicial já que é mais rápido que o algoritmo de Wilson no começo e transita para o algoritmo de Wilson no meio para o fim já que o Wilson é melhor nestes casos. Como fica evidente no gráfico abaixo:
