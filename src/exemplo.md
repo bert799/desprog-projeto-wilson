@@ -238,7 +238,7 @@ Em relação ao funcionamento de preenchimento, quando o vértice a ser encontra
 Algoritmo de Wilson
 ---------
 
-O algoritmo de Broder, parte da idéia de ir construindo o labirinto a partir da árvore geradora, com os ramos conectados a ela crescendo, que como vimos apresenta o problema de ser muito lento no final, mas e se houvesse um programa que primeiro construísse estes ramos, pelos pontos desconectados, e depois os "espetassem" na árvore?
+O algoritmo de Broder, parte da idéia de ir construindo o labirinto a partir de uma árvore geradora, com os ramos conectados a ela crescendo, que como vimos apresenta o problema de ser muito lento no final, mas e se houvesse um programa que primeiro construísse estes ramos pelos pontos desconectados, e depois os "espetassem" na árvore?
 
 ??? Checkpoint X
 
@@ -258,13 +258,15 @@ Abaixo temos um exemplo da construção de um destes ramos.
 
 ??? Checkpoint X
 
-Se queremos evitar o mesmo problema do algoritmo de Aldous-Broder, que medida pode ser tomada para evitar percorrer caminhos no qual o ramo já passou?
+Se queremos evitar o mesmo problema do algoritmo de Aldous-Broder, que medida pode ser tomada para evitar percorrer pontos no qual o ramo já passou?
 
 ::: Gabarito
 Podemos marcar todos os pontos percorrido e fazer com que o programa os evite.
 :::
 
 ???
+
+Com essa idéia vamos pensar neste método para a construção de labirintos.
 
 ??? Checkpoint X
 
@@ -276,9 +278,21 @@ Ao "desviar" de pontos já percorridos tenderemos a criar caminhos muito longos 
 
 ???
 
-PENSAR EM ATIVIDADE PARA OBTER LOOP-ERASED
+Então como é possível usar esse método e manter a imparcialidade de geração? sabemos que não podemos evitar os caminhos já percorridos, mas, e se deixássemos que os dois caminhos se encontrem, porém não se cruzem? Neste caso  eles criariam um loop como pode-se ver na imagem abaixo, isso não é perfeito já que quebra o desejo do labirinto ser perfeito, por termos mais de um caminho entre dois pontos, porém a ideia pode nos ajudar ainda com um pouco mais de desenvolvimento.
 
-Então como é possível usar esse método e manter a imparcialidade de geração? Para isso vamos pensar no que acontece quando uma parte do ramo encontra outra, elas criam um loop! Assim se apagamos (*erase*) este *loop* e continuamos o ramo a partir de sua base mantendo o comportamento de *random-walk* até encontrarmos o ramo preservamos a imparcialidade e não percorremos o mesmo caminho mais de uma vez!
+![](Loop.png)
+
+??? Checkpoint X
+
+Como sabemos que continuar o caminho não é uma boa opção e desviar dos caminhos já percorridos não evita problemas, qual a opção que nos resta quando formamos um loop?
+
+::: Gabarito
+Podemos apagar o loop, continuando a partir de sua base.
+:::
+
+???
+
+Assim, mantemos o comportamento de *random-walk* até encontrarmos o ramo, preservamos a imparcialidade e não percorremos o mesmo caminho mais de uma vez!
 
 Esta ideia é chamade de *loop-erased random walk*!
 
@@ -288,22 +302,33 @@ Abaixo temos uma demonstração do *loop-erased random walk* em ação, caso nã
 
 ??? Checkpoint X
 
-Embora esse método apresente estas vantagens, ele introduz um problema, qual? Pense nas primeiras operações quando a árvore geradora é pequena.
+Embora esse método apresente estas vantagens, ele introduz um problema, qual? Pense nas primeiras operações quando o labirinto é pequeno.
 
 ::: Gabarito
-Nas primeiras operações pode ser que o algoritmo demore para "espetar" na árvore já que há muitos espaços vazios e poucos preenchidos.
+Nas primeiras operações pode ser que o algoritmo demore para "encontrar" o labirinto já que há muitos espaços vazios e poucos preenchidos.
+:::
+
+???
+
+??? Desafio X
+
+A desvantagem acima pode acabar sendo relativamente benigna para a velocidade do algoritmo, porque?
+
+::: Gabarito
+Quando qualquer uma das operações inicias for demorada, a chance é relativamente alta que o resultado seja um caminho longo, que facilitará todas as operações seguintes
+já que haverá muitos mais pontos para os ramos serem "espetados".
 :::
 
 ???
 
 A ideia de David Bruce Wilson para um algoritmo deste tipo é resumidamente, um programa que recebe
 como entrada um grafo e escolhe um vértice não preenchido aleatório de início, então começa o 
-*loop-erased random walk*. O processo se repete até obter-se uma árvore geradora completamente preenchida.
+*loop-erased random walk*, com este caminho sendo adicionado ao resto do labirinto quando encontra 
+um de seus pontos já definidos. O processo se repete até ele ser completamente preenchido.
 
-As vantagens dessa estratégia é que como resultado obtem-se um labirinto perfeito, ou seja, todos os vértices são acessíveis, e 
-entre dois deles há apenas um caminho. Outro benefício do algoritmo de Wilson, mencionado previamente, é que pelo caminho ser definido aleatóriamente
-as chances de gerar qualquer tipo de labirinto é uniforme, ou seja não existe viés para tipos especificos de árvores geradoras, um problema presente em outros 
-algoritmos de geração de labirintos como se pode ver nas duas figuras abaixo:
+As vantagens dessa estratégia é que como resultado obtem-se um labirinto perfeito. Outro benefício do algoritmo de Wilson, mencionado previamente,
+é que pelo caminho ser definido aleatóriamente as chances de gerar qualquer tipo de labirinto é uniforme, ou seja não existe viés para tipos especificos 
+de árvores geradoras, um problema presente em outros algoritmos de geração de labirintos como se pode ver nas duas figuras abaixo:
 
 ![](DepthFirstSearchMaze.png)
 
@@ -321,14 +346,27 @@ Pelo fato de ser um programa probabilistico, a complexidade do algoritmo de Wils
 ("Ufa, engenharia já tem números o suficiente.") e compará-lo com o algoritmo que vimos anteriormente, o algoritmo de Aldous-Broder. De ínicio vamos falar de sua similaridade, ambos utilizam alguma forma de *random walk* para ir preenchendo a árvore geradora, assim, no pior dos casos ambos vão ter a complexidade igual, porém isso
 não significa que seus tempo de rodar são iguais. 
 
-Para perceber isso basta analisar suas diferenças, o algoritmo de Aldous-Broder caminha tanto pelas células preenchidas quanto aquelas vazias, preenchendo-as no processo. Isso faz com que o preenchimento seja bem rápido no começo, já que há várias células vazias e poucas preenchidas, o que reduz as chances de já passar por caminho já traçado. Essa mesma qualidade causa o oposto quando esta próximo do fim, quando a maior parte do labirinto já está preenchida o que acaba resultando em várias caminhadas "sem rumo" onde nenhuma célula é adicionada ao labirinto.
+??? Checkpoint X
 
-O algoritmo de Wilson tem algumas mudanças como vimos, primeiramente os caminhos são apenas traçados por células vazias, só sendo preenchidas quando este encontra alguma célula definida, isto tem o comportamento inverso do Aldous-Broder, sendo mais devagar no começo, quando uma pequena parte do labirinto esta definida sendo difícil de ser encontrada pelo caminho do *loop-erased random walk*, e sendo muito mais rápida no final, quando as chances de encontrar um vértice já definido são muito maiores. 
+Pense nos comportamentos e características de cada um dos dois e aponte quem deve ser o mais rápido na média e porque.
 
-Entretando embora os comportamentos sejam opostos não significa que ambos demorem o mesmo. O algoritmo de Wilson sempre está diminuindo as suas células disponíveis para percorrer com todas sendo válidas conforme vai preenchendo a árvore geradora. Enquanto o Aldous-Broder sempre tem ```n``` espaços para percorrer com 
-o número de células válidas a serem preenchidas diminuindo gradativamente. Isso resulta que, na prática, que o algoritmo de Wilson seja bem mais rápido que o algoritmo de Aldous-Broder tornando-o mais atrativo já que ambos também apresentam as mesmas caracteristicas benéficas de gerarem labirintos perfeitos e com chances uniformes de serem gerados.
+Dica: Pense também no que ocorre com o número de pontos pelos quais ambos os algoritmos podem percorrer conforme o labirinto é preenchido.
 
+::: Gabarito
+Embora o algoritmo de Aldous-Broder seja mais rápido no começo ele sempre trabalha com todos os pontos do labirinto, enquanto o Wilson sempre melhora as suas chances de encontrar alguma parte dele conforme vai preenchendo diminuindo o número de pontos pelo qual pode percorrer. Portanto o algoritmo mais rápido na prática será o de Wilson.
+:::
 
-Para compravar a análise empirica, podemos ver o gráfico de complexidade de Wilson comparado com outro algoritmo de geração de labirintos: **Aldous-Broder**.
+???
+
+??? Desafio X
+
+Qual seria uma implementação possível de melhor desempenho que o algoritmo de Wilson e o algoritmo de Aldous-Broder?
+
+::: Gabarito
+Como os algoritmos tem desvantagens opostas em relação ao tempo das operações iniciais e finais, podemos criar um algoritmo híbrido que usa o Aldous-Broder para preencher uma árvore geradora inicial já que é mais rápido que o algoritmo de Wilson no começo e transita para o algoritmo de Wilson no meio para o fim já que o Wilson é melhor nestes casos. Como fica evidente no gráfico abaixo:
 
 ![](complexImg.png)
+
+:::
+
+???
