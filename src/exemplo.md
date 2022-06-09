@@ -106,7 +106,7 @@ Em um quarto muito amplo, precisamos construir nossas paredes do labirinto, mas 
 
 Este processo de andar aleatóriamente e ir construindo paredes é conhecido como [Random Walk](https://en.wikipedia.org/wiki/Random_walk). Mas para a nossa aplicação isso não é suficiente.
 
-??? Checkpoint 5:
+??? Checkpoint 4:
 
 Sabendo que um caminho {red}(não) pode passar por vértices já visitados, o que deve acontecer quando o vértice **não possui mais vizinhos**?
 
@@ -151,7 +151,7 @@ Para garantir a aleatoriedade do sistema, este algoritmo escolhe aleatoriamente 
 
 Pensando na estrutura do *Random Walk*, no algoritmo de Broder a escolha de que caminho seguir **não é levado em consideração os vizinhos já percorridos ou paredes criadas**, e, por isso, na maioria das vezes existem 4 caminhos possíveis para seguir.
 
-??? Checkpoint 8
+??? Checkpoint 5
 
 Pensando no funcionamento aleatório do sistema, qual é o grande problema causado por este quando a malha do labirinto é muito grande?
 
@@ -174,7 +174,7 @@ Algoritmo de Wilson
 
 O algoritmo de Broder, parte da idéia de ir construindo o labirinto a partir de uma árvore geradora, com os ramos conectados a ela crescendo, que como vimos apresenta o problema de ser muito lento no final, mas e se houvesse um programa que primeiro construísse estes ramos pelos pontos desconectados, e depois os "espetassem" na árvore?
 
-??? Checkpoint X
+??? Checkpoint 6
 
 Qual uma possível vantagem desse método em relação ao algoritmo de Aldous-Broder? Pense nas diferenças de comportamento nas operações finais de ambos.
 
@@ -190,7 +190,7 @@ Abaixo temos um exemplo da construção de um destes ramos.
 
 :WilsonWay
 
-??? Checkpoint X
+??? Checkpoint 7
 
 Se queremos evitar o mesmo problema do algoritmo de Aldous-Broder, que medida pode ser tomada para evitar percorrer pontos no qual o ramo já passou?
 
@@ -202,7 +202,7 @@ Podemos marcar todos os pontos percorrido e fazer com que o programa os evite.
 
 Com essa idéia vamos pensar neste método para a construção de labirintos.
 
-??? Checkpoint X
+??? Checkpoint 8
 
 Essa ideia parece ser boa, mas introduz um problema, qual? Lembre que queremos que o algoritmo gere labirintos de forma imparcial, ou seja, que não haja preferência para um tipo específico de labirito.
 
@@ -217,7 +217,7 @@ Então como é possível usar esse método e manter a imparcialidade de geraçã
 
 ![](Loop.png)
 
-??? Checkpoint X
+??? Checkpoint 9
 
 Como sabemos que continuar o caminho não é uma boa opção e desviar dos caminhos já percorridos não evita problemas, qual a opção que nos resta quando formamos um loop?
 
@@ -235,7 +235,7 @@ Abaixo temos uma demonstração do *loop-erased random walk* em ação, caso nã
 
 :loopErasedRandomWalk
 
-??? Checkpoint X
+??? Checkpoint 10
 
 Embora esse método apresente estas vantagens, ele introduz um problema, qual? Pense nas primeiras operações quando o labirinto é pequeno.
 
@@ -245,7 +245,7 @@ Nas primeiras operações pode ser que o algoritmo demore para "encontrar" o lab
 
 ???
 
-??? Desafio X
+??? Desafio 11
 
 A desvantagem acima pode acabar sendo relativamente benigna para a velocidade do algoritmo, porque?
 
@@ -281,7 +281,7 @@ Pelo fato de ser um programa probabilistico, a complexidade do algoritmo de Wils
 ("Ufa, engenharia já tem números o suficiente.") e compará-lo com o algoritmo que vimos anteriormente, o algoritmo de Aldous-Broder. De ínicio vamos falar de sua similaridade, ambos utilizam alguma forma de *random walk* para ir preenchendo a árvore geradora, assim, no pior dos casos ambos vão ter a complexidade igual, porém isso
 não significa que seus tempo de rodar são iguais. 
 
-??? Checkpoint X
+??? Checkpoint 12
 
 Pense nos comportamentos e características de cada um dos dois e aponte quem deve ser o mais rápido na média e porque.
 
@@ -293,7 +293,7 @@ Embora o algoritmo de Aldous-Broder seja mais rápido no começo ele sempre trab
 
 ???
 
-??? Desafio X
+??? Desafio
 
 Qual seria uma implementação possível de melhor desempenho que o algoritmo de Wilson e o algoritmo de Aldous-Broder?
 
