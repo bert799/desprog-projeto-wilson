@@ -217,7 +217,7 @@ Para garantir a aleatoriedade do sistema, este algoritmo escolhe aleatoriamente 
 
 Pensando na estrutura do *Random Walk*, no algoritmo de Broder a escolha de que caminho seguir **não é levado em consideração os vizinhos já percorridos ou paredes criadas**, e, por isso, na maioria das vezes existem 4 caminhos possíveis para seguir.
 
-??? Checkpoint X
+??? Checkpoint 8
 
 Pensando no funcionamento aleatório do sistema, qual é o grande problema causado por este quando a malha do labirinto é muito grande?
 
@@ -279,6 +279,7 @@ Ao "desviar" de pontos já percorridos tenderemos a criar caminhos muito longos 
 ???
 
 Então como é possível usar esse método e manter a imparcialidade de geração? sabemos que não podemos evitar os caminhos já percorridos, mas, e se deixássemos que os dois caminhos se encontrem, porém não se cruzem? Neste caso  eles criariam um loop como pode-se ver na imagem abaixo, isso não é perfeito já que quebra o desejo do labirinto ser perfeito, por termos mais de um caminho entre dois pontos, porém a ideia pode nos ajudar ainda com um pouco mais de desenvolvimento.
+
 
 ![](Loop.png)
 
