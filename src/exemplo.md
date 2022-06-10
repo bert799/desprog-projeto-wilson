@@ -87,7 +87,7 @@ Mas qual é a finalidade de construir labirintos por meio de um algoritmo?
 
 E como vamos montar o **grafo** para este algoritmo?
 
-Para a construção de algoritmos, o grafo possui uma estrutura em formato de {red}(quadriculado), ou seja, os vértices são os centros dos quadrados, e as arestas entre quadrados são as arestas do grafo caso **não existam** ou indicam que não há ligação, paredes, **caso existam**.
+Para a construção de algoritmos, o grafo possui uma estrutura em formato de {red}(quadriculado), ou seja, os vértices são os centros dos quadrados, e as arestas entre quadrados são as arestas do grafo. Caso **não existam**, serão formadas paredes entre os vértices, **caso existam** será considerado um caminho válido.
 
 ![](Grafo_labirinto.png)
 
@@ -102,7 +102,7 @@ typedef struct {
 
 Nosso objetivo agora é construir os caminhos que serão passagens e esconder aqueles que não são, de modo a se transformarem em paredes. Para isso, vamos pensar em um exemplo muito simples na vida real:
 
-Em um quarto muito amplo, precisamos construir nossas paredes do labirinto, mas só podemos andar nas **direções cardeais**. Para prosseguir, devemos escolher uma direção que {red}(não) seja parede ou um ponto no quarto que já se passou. Quando o movimento ocorrer, deve-se erguer uma parede para todo o resto do quarto que não conhecemos ao realizar o movimento. Essa escolha de movimento deve ser aleatória, como tentativa de ser o mais difícil possível de encontrar uma saída.
+Em um quarto muito amplo, precisamos construir nossas paredes do labirinto, mas só podemos andar nas **direções cardeais**. Para prosseguir, devemos escolher uma direção que {red}(não) seja parede ou um ponto no quarto que já se passou. Quando o movimento ocorrer, deve-se erguer uma parede para todo o resto do quarto que não conhecemos. Essa escolha de movimento deve ser aleatória, como tentativa de ser o mais difícil possível de encontrar uma saída.
 
 Este processo de andar aleatóriamente e ir construindo paredes é conhecido como [Random Walk](https://en.wikipedia.org/wiki/Random_walk). Mas para a nossa aplicação isso não é suficiente.
 
