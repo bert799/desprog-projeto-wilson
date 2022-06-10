@@ -212,14 +212,16 @@ Ao "desviar" de pontos já percorridos tenderemos a criar caminhos muito longos 
 
 ???
 
-Então como é possível usar esse método e manter a imparcialidade de geração? sabemos que não podemos evitar os caminhos já percorridos, mas, e se deixássemos que os dois caminhos se encontrem, porém não se cruzem? Neste caso  eles criariam um loop como pode-se ver na imagem abaixo, isso não é perfeito já que quebra o desejo do labirinto ser perfeito, por termos mais de um caminho entre dois pontos, porém a ideia pode nos ajudar ainda com um pouco mais de desenvolvimento.
+Então como é possível usar esse método e manter a imparcialidade de geração? sabemos que não podemos evitar os caminhos já percorridos, e não podemos deixar que os dois caminhos se encontrem, já que neste caso  eles criariam um loop como pode-se ver na imagem abaixo. Isso não é bom já que quebra o desejo do labirinto ser perfeito, por termos mais de um caminho entre dois pontos, porém podemos usar pensar evento para nos ajudar.
 
 
 ![](Loop.png)
 
 ??? Checkpoint 9
 
-Como sabemos que continuar o caminho não é uma boa opção e desviar dos caminhos já percorridos não evita problemas, qual a opção que nos resta quando formamos um loop?
+Que outra estratégia podemos usar para evitar a criação de um loop? Pense que queremos preservar um ramo linear.
+
+Dica.: A ídeia pode ser mas simples do que pensa. 
 
 ::: Gabarito
 Podemos apagar o loop, continuando a partir de sua base.
